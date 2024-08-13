@@ -31,7 +31,7 @@ import com.alibaba.nacos.plugin.datasource.model.MapperResult;
  **/
 public class BaseTenantCapacityMapper extends TenantCapacityMapperByMySql {
     
-    private DatabaseDialect databaseDialect;
+    private final DatabaseDialect databaseDialect;
     
     public BaseTenantCapacityMapper() {
         databaseDialect = DatabaseDialectManager.getInstance().getDialect(getDataSource());
@@ -44,4 +44,8 @@ public class BaseTenantCapacityMapper extends TenantCapacityMapperByMySql {
                 context.getWhereParameter(FieldConstant.LIMIT_SIZE)));
     }
 
+    @Override
+    public String getFunction(String functionName) {
+        return databaseDialect.getFunction(functionName);
+    }
 }

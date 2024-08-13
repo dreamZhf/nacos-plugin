@@ -51,4 +51,9 @@ public class SqlServerDatabaseDialect extends AbstractDatabaseDialect {
         return sql + " ORDER BY id OFFSET " + startOffset + " ROWS FETCH NEXT "
                 + pageSize + " ROWS ONLY ";
     }
+
+    @Override
+    public String getFunction(String functionName) {
+        return "";
+    }
 }

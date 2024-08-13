@@ -36,7 +36,7 @@ import java.util.List;
  **/
 public class BaseConfigTagsRelationMapper extends ConfigTagsRelationMapperByMySql {
     
-    private DatabaseDialect databaseDialect;
+    private final DatabaseDialect databaseDialect;
     
     public BaseConfigTagsRelationMapper() {
         databaseDialect = DatabaseDialectManager.getInstance().getDialect(getDataSource());
@@ -144,5 +144,9 @@ public class BaseConfigTagsRelationMapper extends ConfigTagsRelationMapperByMySq
         String sql = getLimitPageSqlWithOffset(sqlFetchRows + where, startRow, pageSize);
         return new MapperResult(sql, paramList);
     }
-    
+
+    @Override
+    public String getFunction(String functionName) {
+        return databaseDialect.getFunction(functionName);
+    }
 }

@@ -175,4 +175,9 @@ public abstract class AbstractOracleMapper extends AbstractMapper {
 	protected DatabaseDialect getDatabaseDialect() {
 		return databaseDialect;
 	}
+
+	@Override
+	public String getFunction(String s) {
+		return "";
+	}
 }

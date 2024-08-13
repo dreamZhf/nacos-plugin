@@ -38,7 +38,7 @@ import java.util.List;
  **/
 public class BaseConfigInfoMapper extends ConfigInfoMapperByMySql {
     
-    private DatabaseDialect databaseDialect;
+    private final DatabaseDialect databaseDialect;
     
     public BaseConfigInfoMapper() {
         databaseDialect = DatabaseDialectManager.getInstance().getDialect(getDataSource());
@@ -284,5 +284,9 @@ public class BaseConfigInfoMapper extends ConfigInfoMapperByMySql {
     public String getTableName() {
         return TableConstant.CONFIG_INFO;
     }
-    
+
+    @Override
+    public String getFunction(String functionName) {
+        return databaseDialect.getFunction(functionName);
+    }
 }

@@ -82,4 +82,11 @@ public interface DatabaseDialect {
      */
     public String[] getReturnPrimaryKeys();
 
+    /**
+     * 获取函数
+     *
+     * @param functionName 函数名
+     * @return 返回函数
+     */
+    String getFunction(String functionName);
 }

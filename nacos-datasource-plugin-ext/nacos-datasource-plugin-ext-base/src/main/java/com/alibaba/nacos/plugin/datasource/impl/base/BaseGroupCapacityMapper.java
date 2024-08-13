@@ -31,7 +31,7 @@ import com.alibaba.nacos.plugin.datasource.model.MapperResult;
  **/
 public class BaseGroupCapacityMapper extends GroupCapacityMapperByMysql {
     
-    private DatabaseDialect databaseDialect;
+    private final DatabaseDialect databaseDialect;
     
     public BaseGroupCapacityMapper() {
         databaseDialect = DatabaseDialectManager.getInstance().getDialect(getDataSource());
@@ -43,5 +43,9 @@ public class BaseGroupCapacityMapper extends GroupCapacityMapperByMysql {
         return new MapperResult(sql,
                 CollectionUtils.list(context.getWhereParameter(FieldConstant.ID), context.getPageSize()));
     }
-    
+
+    @Override
+    public String getFunction(String functionName) {
+        return databaseDialect.getFunction(functionName);
+    }
 }

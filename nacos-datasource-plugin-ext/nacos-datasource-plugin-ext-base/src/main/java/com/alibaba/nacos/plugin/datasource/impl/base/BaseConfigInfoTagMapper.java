@@ -32,7 +32,7 @@ import java.util.Collections;
  **/
 public class BaseConfigInfoTagMapper extends ConfigInfoTagMapperByMySql {
     
-    private DatabaseDialect databaseDialect;
+    private final DatabaseDialect databaseDialect;
     
     public BaseConfigInfoTagMapper() {
         databaseDialect = DatabaseDialectManager.getInstance().getDialect(getDataSource());
@@ -53,5 +53,9 @@ public class BaseConfigInfoTagMapper extends ConfigInfoTagMapperByMySql {
                 + innerSql + "  ) " + "g, config_info_tag t  WHERE g.id = t.id  ";
         return new MapperResult(sql, Collections.emptyList());
     }
-    
+
+    @Override
+    public String getFunction(String functionName) {
+        return databaseDialect.getFunction(functionName);
+    }
 }

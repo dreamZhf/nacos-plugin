@@ -35,7 +35,7 @@ import java.util.List;
  **/
 public class BaseConfigInfoAggrMapper extends ConfigInfoAggrMapperByMySql {
     
-    private DatabaseDialect databaseDialect;
+    private final DatabaseDialect databaseDialect;
     
     public BaseConfigInfoAggrMapper() {
         databaseDialect = DatabaseDialectManager.getInstance().getDialect(getDataSource());
@@ -59,5 +59,9 @@ public class BaseConfigInfoAggrMapper extends ConfigInfoAggrMapperByMySql {
         List<Object> paramList = CollectionUtils.list(dataId, groupId, tenantId);
         return new MapperResult(sql, paramList);
     }
-    
+
+    @Override
+    public String getFunction(String functionName) {
+        return databaseDialect.getFunction(functionName);
+    }
 }

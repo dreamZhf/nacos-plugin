@@ -50,7 +50,12 @@ public class OracleDatabaseDialect extends AbstractDatabaseDialect {
 	public String getLimitPageSqlWithOffset(String sql, int startOffset, int pageSize) {
 		return sql + "  OFFSET " + startOffset + " ROWS FETCH NEXT " + pageSize + " ROWS ONLY ";
 	}
-	
+
+	@Override
+	public String getFunction(String functionName) {
+		return "";
+	}
+
 	@Override
 	public String getLimitPageSql(String sql, int pageNo, int pageSize) {
 		return sql + "  OFFSET " + getPagePrevNum(pageNo, pageSize) + " ROWS FETCH NEXT " + pageSize + " ROWS ONLY ";

@@ -18,6 +18,7 @@ package com.alibaba.nacos.plugin.datasource.dialect;
 
 import com.alibaba.nacos.plugin.datasource.constants.DatabaseTypeConstant;
 import com.alibaba.nacos.plugin.datasource.constants.PrimaryKeyConstant;
+import com.alibaba.nacos.plugin.datasource.enums.mysql.TrustedMysqlFunctionEnum;
 
 /**
  * dameng database dialect.
@@ -29,6 +30,11 @@ public class DaMengDatabaseDialect extends AbstractDatabaseDialect {
     @Override
     public String[] getReturnPrimaryKeys() {
         return PrimaryKeyConstant.UPPER_RETURN_PRIMARY_KEYS;
+    }
+
+    @Override
+    public String getFunction(String functionName) {
+        return TrustedMysqlFunctionEnum.getFunctionByName(functionName);
     }
 
     @Override
